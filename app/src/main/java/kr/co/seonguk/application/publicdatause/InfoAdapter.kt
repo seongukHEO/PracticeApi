@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kr.co.seonguk.application.publicdatause.databinding.RowInfoBinding
 
 class InfoAdapter():RecyclerView.Adapter<InfoViewHolder>() {
+
+    private lateinit var recyclerviewClick: ItemOnClickListener
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InfoViewHolder {
 
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -22,11 +24,22 @@ class InfoAdapter():RecyclerView.Adapter<InfoViewHolder>() {
     override fun onBindViewHolder(holder: InfoViewHolder, position: Int) {
         holder.rowInfoBinding.textViewTitle.text = "우돈가"
         holder.rowInfoBinding.textViewType.text = "일반 음식점"
+        holder.rowInfoBinding.root.setOnClickListener {
+            recyclerviewClick.recyclerviewClickListener()
+        }
 
     }
 
     fun submitList(){
         notifyDataSetChanged()
+    }
+
+    interface ItemOnClickListener{
+        fun recyclerviewClickListener()
+    }
+
+    fun setRecyclerviewClick(recyclerviewClick: ItemOnClickListener){
+        this.recyclerviewClick = recyclerviewClick
     }
 }
 

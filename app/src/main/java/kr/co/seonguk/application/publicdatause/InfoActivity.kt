@@ -1,5 +1,6 @@
 package kr.co.seonguk.application.publicdatause
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +13,12 @@ class InfoActivity : AppCompatActivity() {
 
     val allAdapter : InfoAdapter by lazy {
         val adapter = InfoAdapter()
+        adapter.setRecyclerviewClick(object : InfoAdapter.ItemOnClickListener{
+            override fun recyclerviewClickListener() {
+                startActivity(Intent(this@InfoActivity, InfoOneActivity::class.java))
+            }
+
+        })
         adapter
     }
 
