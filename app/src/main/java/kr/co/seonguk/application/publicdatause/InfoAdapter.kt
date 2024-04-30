@@ -1,5 +1,6 @@
 package kr.co.seonguk.application.publicdatause
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -25,6 +26,10 @@ class InfoAdapter :ListAdapter<Row, InfoAdapter.InfoViewHolder>(DiffUtilCallback
         fun bind(row: Row){
             rowInfoBinding.textViewTitle.text = row.STR_NM
             rowInfoBinding.textViewType.text = row.INDUTYPE_NM
+            row.REFINE_LOTNO_ADDR
+            rowInfoBinding.root.setOnClickListener {
+                recyclerviewClick.recyclerviewClickListener(row.STR_NM?:"", row.INDUTYPE_NM?:"", row.REFINE_LOTNO_ADDR?:"")
+            }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InfoViewHolder {
@@ -36,14 +41,11 @@ class InfoAdapter :ListAdapter<Row, InfoAdapter.InfoViewHolder>(DiffUtilCallback
 
     override fun onBindViewHolder(holder: InfoViewHolder, position: Int) {
         holder.bind(currentList[position])
-        holder.rowInfoBinding.root.setOnClickListener {
-            recyclerviewClick.recyclerviewClickListener()
-        }
 
     }
 
     interface ItemOnClickListener{
-        fun recyclerviewClickListener()
+        fun recyclerviewClickListener(title:String, type:String, address:String)
     }
 
     fun setRecyclerviewClick(recyclerviewClick: ItemOnClickListener){

@@ -16,6 +16,9 @@ class InfoOneActivity : AppCompatActivity() {
     }
 
     private fun initView(){
+        val titleInfo = intent?.getStringExtra("title")
+        val type = intent?.getStringExtra("type")
+        val address = intent?.getStringExtra("address")
         with(binding){
             materialToolbar2.apply {
                 title = "음식점 정보 보기"
@@ -24,9 +27,9 @@ class InfoOneActivity : AppCompatActivity() {
                     finish()
                 }
             }
-            textViewOneTitle.text = "우돈가"
-            textViewOneType.text = "일반 음식점"
-            textViewOneAddress.text = "경기도 의정부"
+            textViewOneTitle.text = "${titleInfo}"
+            textViewOneType.text = "${type}"
+            textViewOneAddress.text = "${address}"
         }
     }
 }
