@@ -17,8 +17,15 @@ class InfoActivity : AppCompatActivity() {
     val allAdapter : InfoAdapter by lazy {
         val adapter = InfoAdapter()
         adapter.setRecyclerviewClick(object : InfoAdapter.ItemOnClickListener{
-            override fun recyclerviewClickListener() {
-                startActivity(Intent(this@InfoActivity, InfoOneActivity::class.java))
+            override fun recyclerviewClickListener(title:String, type:String, address:String) {
+                val newIntent = Intent(this@InfoActivity, InfoOneActivity::class.java)
+                newIntent.putExtra("title", title)
+                newIntent.putExtra("type", type)
+                newIntent.putExtra("address", address)
+                startActivity(newIntent)
+//                Log.d("seonguk1234", title)
+//                Log.d("seonguk1234", type)
+//                Log.d("seonguk1234", address)
             }
 
         })
